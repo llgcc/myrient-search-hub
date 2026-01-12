@@ -1,8 +1,9 @@
 {
   "name": "myrient-search-hub",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "license": "MIT",
+  "main": "electron-main.js",
   "scripts": {
     "dev": "concurrently \"tsx server/index.ts\" \"vite --host\"",
     "dev:frontend": "vite --host",
@@ -11,7 +12,28 @@
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "electron:dev": "concurrently \"pnpm dev\" \"electron .\"",
+    "electron:build": "pnpm build && electron-builder"
+  },
+  "build": {
+    "appId": "com.llgcc.myrient-search-hub",
+    "productName": "Myrient Search Hub",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron-main.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.games"
+    }
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -46,6 +68,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "electron-is-dev": "^3.0.1",
     "embla-carousel-react": "^8.6.0",
     "express": "^4.21.2",
     "framer-motion": "^12.23.22",
@@ -83,6 +106,8 @@
     "add": "^2.0.6",
     "autoprefixer": "^10.4.20",
     "concurrently": "^8.2.2",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.4.0",
     "esbuild": "^0.25.0",
     "pnpm": "^10.15.1",
     "postcss": "^8.4.47",
