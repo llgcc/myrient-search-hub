@@ -19,15 +19,16 @@ RUN pnpm build
 
 # 运行阶段
 FROM base AS runner
+WORKDIR /app
 ENV NODE_ENV=production
 RUN pnpm install --prod --frozen-lockfile
 
-# 复制构建产物
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/package.json ./package.json
+# 复制构建产物到绝对路径
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/package.json /app/package.json
 
 # 暴露端口
 EXPOSE 3001
 
 # 启动命令
-CMD ["node", "dist/index.js"]
+CMD ["node", "/app/dist/index.js"]
