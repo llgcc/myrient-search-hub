@@ -7,8 +7,9 @@ RUN corepack enable
 
 WORKDIR /app
 
-# 复制依赖文件
+# 复制依赖文件和补丁文件
 COPY package.json pnpm-lock.yaml ./
+COPY patches ./patches
 
 # 构建阶段
 FROM base AS build
