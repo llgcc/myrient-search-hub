@@ -34,3 +34,8 @@ jobs:
         run: pnpm electron:build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # 跳过 macOS 代码签名
+          CSC_LINK: ""
+          CSC_KEY_PASSWORD: ""
+          # 禁用 Electron Builder 的自动发布，由 Actions 处理
+          ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true

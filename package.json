@@ -1,6 +1,8 @@
 {
   "name": "myrient-search-hub",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "A modern web hub for searching and downloading retro game ROMs from Myrient.",
+  "author": "llgcc",
   "type": "commonjs",
   "license": "MIT",
   "main": "electron-main.js",
@@ -33,6 +35,9 @@
     "mac": {
       "target": "dmg",
       "category": "public.app-category.games"
+    },
+    "linux": {
+      "target": "AppImage"
     }
   },
   "dependencies": {
